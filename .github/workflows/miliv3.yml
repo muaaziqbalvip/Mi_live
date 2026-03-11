@@ -1,4 +1,4 @@
-name: MITV LIVE 1
+name: MITV LIVE 3
 
 on:
   schedule:
@@ -10,7 +10,7 @@ on:
         required: true
         default: 'https://www.dropbox.com/scl/fi/ope7hg3vwr2dv9hxj7efu/lv_0_20260308130028.mp4?rlkey=fsxfleamugvd1w7fyi8to3usq&st=muxc5kk1&raw=1'
       stream_key:
-        description: 'Stream Key Yahan Daalein'
+        description: 'Facebook Stream Key Yahan Daalein'
         required: true
         default: 'vckh-qm35-j90w-r3bz-9jza'
 
@@ -22,10 +22,10 @@ jobs:
   mitv_fb_broadcast:
     runs-on: ubuntu-latest
     steps:
-      - name: 1. 🎛️MI System Setup & Initialization
+      - name: 1. 💥🆂🅴🆃🆄🅿 𝐌𝐈 𝖫𝖮𝖠𝖣𝖨𝖭𝖦...💥
         run: |
           echo "==================================================="
-          echo "   MUSLIM ISLAM - MiTV FACEBOOK LIVE ENGINE        "
+          echo "   MUSLIM ISLAM - MiTV LIVE ENGINE        "
           echo "==================================================="
           sudo apt-get update -y
           sudo apt-get install -y ffmpeg wget curl
@@ -35,14 +35,14 @@ jobs:
           for i in {1..500}; do echo "Diagnostic Log Line $i: System Module Verified"; done
           echo "All core modules are ready for Facebook Ingest."
 
-      - name: 2. 🔗Fetching Video Content📽️
+      - name: 2. 🎬🅐🅣🅣🅐🅒🅗 ⓋⒺⒹ...🍿
         run: |
           echo "Downloading MiTV Broadcast File..."
           wget -O fb_video.mp4 "${{ github.event.inputs.video_url }}"
           echo "Download Complete. Validating File..."
           if [ ! -f fb_video.mp4 ]; then echo "Error: Video file not found!"; exit 1; fi
 
-      - name: 3. MI Live Streaming Engine
+      - name: 3. 🔴🆂🆃🅰🆁🆃...🔵
         run: |
           echo "Broadcasting to Facebook Page/Profile..."
           
@@ -58,7 +58,7 @@ jobs:
             sleep 5
           done
 
-      - name: 4. Log Generation & 24/7 Continuity
+      - name: 4. 🔥24/7 🅛🄸🆅ⓔ🔥
         if: always()
         run: |
           echo "Finalizing Session Logs for MiTV Network..."
