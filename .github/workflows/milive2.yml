@@ -2,31 +2,14 @@ name: MI AI Keep Alive
 
 on:
   schedule:
-    - cron: "*/30 * * * *"  # every 30 minutes (more stable than 6 hours)
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
 
     steps:
-      - name: Start Keep Alive Ping
+      - name: Ping bot (keep alive)
         run: |
-          echo "🤖 MI AI Keep Alive Started"
-          date
-
-      - name: Random delay (anti-bot detection)
-        run: |
-          sleep $((RANDOM % 20 + 5))
-
-      - name: Ping status check
-        run: |
-          echo "⚡ MI AI is alive and running fine"
-
-      - name: Retry safety ping
-        if: failure()
-        run: |
-          echo "🔁 Retry triggered"
-          sleep 10
-          echo "MI AI recovery ping successful"
+          echo "MI AI is alive"
