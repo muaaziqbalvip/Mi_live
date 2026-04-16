@@ -1,15 +1,35 @@
-name: MI AI Keep Alive
+name: MI AI Full Bot Runner
 
 on:
-  schedule:
-    - cron: "0 */6 * * *"
+  push:
+    branches: [ "main" ]
   workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 min check/restart
 
 jobs:
-  ping:
+  run-bot:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
 
     steps:
-      - name: Ping bot (keep alive)
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
         run: |
-          echo "MI AI is alive"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Start MI AI Bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          echo "🤖 Starting MI AI Bot..."
+          python ai.py
