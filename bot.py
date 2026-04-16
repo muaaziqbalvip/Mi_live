@@ -5,7 +5,7 @@ import requests
 from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
-BOT_TOKEN = os.getenv("BOT2_TOKEN")
+BOT_TOKEN = os.getenv("BOT_TOKE")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
