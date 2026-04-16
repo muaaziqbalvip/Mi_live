@@ -5,7 +5,7 @@ import requests
 from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
-BOT_TOKEN = os.getenv("BOT_TOKE")
+BOT_TOKEN = os.getenv("BOT2_TOKEN")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
@@ -37,26 +37,26 @@ async def reply_ai(update: Update, context: ContextTypes.DEFAULT_TYPE):
     payload = {
         "model": "llama-3.1-8b-instant",
         "messages": [
-            {"role": "system", "content": "You are MI AI Bot 1. You are smart, slightly curious and start conversations sometimes."},
+            {"role": "system", "content": "You are MI AI Bot 2. You are logical, slightly opposite opinion from Bot1 and continue conversation."},
             *chat_history[chat_id]
         ]
     }
 
     try:
-        res = requests.post(GROQ_URL, headers=headers, json=payload, timeout=20)
+        res = requests.post(GROQ_URL, headers=headers, timeout=20)
         reply = res.json()["choices"][0]["message"]["content"]
     except:
-        reply = "⚠️ Bot1 error"
+        reply = "⚠️ Bot2 error"
 
     chat_history[chat_id].append({"role": "assistant", "content": reply})
 
-    await message.reply_text(f"🤖 Bot1: {reply}")
+    await message.reply_text(f"🤖 Bot2: {reply}")
 
 
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, reply_ai))
-    print("Bot1 running...")
+    print("Bot2 running...")
     app.run_polling()
 
 
